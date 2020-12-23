@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /**@jsx jsx*/
 import {jsx, css} from "@emotion/core";
 import bg from './page_bg.jpg'

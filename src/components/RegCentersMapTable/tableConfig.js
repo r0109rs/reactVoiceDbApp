@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /**@jsx jsx*/
 import {jsx} from "@emotion/core";
 import {TABLE_DATA_URL, FILTER_DATA_URL} from "./constants/urls";
