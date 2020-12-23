@@ -120,7 +120,8 @@ class MUITable extends React.Component {
                                        pageSize:20,
                                        emptyRowsWhenPaging: true,
                                        pageSizeOptions:[10,20,50,100],
-                                       rowStyle: data => data.isDuplicateDN === true ? { background: "#dddddd" } : null
+                                       rowStyle:
+                                           data => data.isDuplicateDN === true ? { background: "#dddddd", fontSize: 14 } : { fontSize: 14 }
                                    }}
 
                     />
