@@ -12,9 +12,20 @@ const AgGridTable = () => {
 
     useEffect(() => {
         fetch('http://netcmdb-dev.rs.ru/phone/recordable.json')
-            .then(result => result.json())
+            .then(response => {
+                console.log(response.status)
+                if(!response.ok) {
+                    alert("Error: http status " + response.status)
+                    throw new Error("HTTP status " + response.status)
+                }
+                return response.json()
+            })
             .then(rowData => setRowData(rowData))
+            .catch(error => {
+                console.log(error)
+            })
     }, []);
+
 
     return (
         <div className="ag-theme-alpine" style={ { height: '100%', width: 'auto' } }>

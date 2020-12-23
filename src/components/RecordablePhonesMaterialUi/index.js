@@ -47,7 +47,14 @@ class MaterialUiTable extends React.Component {
     componentDidMount() {
         this.setState({ loading: true })
         fetch('http://netcmdb-dev.rs.ru/phone/recordable.json') //data source
-            .then(response => response.json())
+            .then(response => {
+                console.log(response.status)
+                if(!response.ok) {
+                    alert("Error: http status " + response.status)
+                    throw new Error("HTTP status " + response.status)
+                }
+                return response.json()
+            })
             .then(res => {
                 this.setState({ stats: res, loading: false }, () => console.log(res))
             })
@@ -61,7 +68,7 @@ class MaterialUiTable extends React.Component {
         return (
             <React.Fragment>
                 <div style={{ maxWidth: '100%' }}>
-                    <MaterialTable style={{marginLeft:'10px', marginRight:'10px', marginTop:'10px', nRowsSelected: 20}}
+                    <MaterialTable style={{marginLeft:'10px', marginRight:'10px', marginTop:'10px'}}
                                    title="Recordable Phones"
                                    icons={tableIcons}
                                    columns={[
