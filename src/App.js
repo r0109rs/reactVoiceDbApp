@@ -8,11 +8,22 @@ import UnregisteredPhonesPage from "./components/UnregistredPhonesPage";
 import CucmRoutingPage from "./components/CucmRoutingPage";
 import TestToolsPage from "./components/TestToolsPage";
 import SignIn from "./components/LoginPageMU";
-import {DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES, CUCM_ROUTES, TEST_TOOLS, LOGIN_PAGE, MAX_REFRESH_ATTEMPTS, LOGOUT_PAGE, LOGOUT_ERROR_PAGE} from "./constants";
+import {
+  DICT_REG_CENTERS_MAPPING,
+  UNREGISTERED_PHONES,
+  CUCM_ROUTES,
+  TEST_TOOLS,
+  LOGIN_PAGE,
+  MAX_REFRESH_ATTEMPTS,
+  LOGOUT_PAGE,
+  LOGOUT_ERROR_PAGE,
+  RECORDABLE_PHONES, RECORDABLE_PHONES_V2
+} from "./constants";
 import PageNotFound from "./components/Page404"
 import {refreshToken, isLoggedIn, setToken, setTokenInfo, getTokenInfo, clearToken, getTokenTimeBeforeRefresh, refreshTimeout_ms} from "./helpers";
 import LogoutPage from "./components/LogoutPage";
 import LogoutError from "./components/LogoutError";
+import AgGridTable from "./components/RecordablePhonesAgGrid";
 
 const PrivateRoute = ({children, ...rest}) => {
   const location = useLocation()
@@ -109,6 +120,12 @@ function App() {
                   </PrivateRoute>
                   <PrivateRoute path={TEST_TOOLS} exact>
                     <TestToolsPage/>
+                  </PrivateRoute>
+                  <PrivateRoute path={RECORDABLE_PHONES} exact>
+                    <AgGridTable />
+                  </PrivateRoute>
+                  <PrivateRoute path={RECORDABLE_PHONES_V2} exact>
+                    <div>RPV2</div>
                   </PrivateRoute>
                   <Route path={LOGIN_PAGE}>
                     <SignIn setTokenState={setTokenState} />

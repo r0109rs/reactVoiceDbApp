@@ -8,12 +8,32 @@ import {
 import {NavLink, NavItem, Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from "./styledComponents";
 import logo from './logo_brs_small.png'
 import {
-    LOCATIONS, DEVICES,
-    PHONES_INFO_URL, PHONES_FIO_URL, PHONES_REDIRECTED_PHONES_URL,
-    NETWORKS_IPAM, REPORTS,
-    PHONE_REPORTS_BY_MODELS, PHONE_REPORTS_BY_CLUSTERS, PHONE_REPORTS_BY_NOT_USED, PHONE_REPORTS_BY_AGENT_LICENSES,
-    DICT_CITIES, DICT_DEVICES, DICT_HW_LOGS, DICT_NETWORKS, DICT_OFFICE_STATUSES, DICT_PHONE_LOGS, DICT_PORT_TYPES,
-    DICT_REGIONS, DICT_VRFS, DICT_REG_CENTERS_MAPPING, UNREGISTERED_PHONES, CUCM_ROUTES, TEST_TOOLS, LOGOUT_PAGE
+    LOCATIONS,
+    DEVICES,
+    PHONES_INFO_URL,
+    PHONES_FIO_URL,
+    PHONES_REDIRECTED_PHONES_URL,
+    NETWORKS_IPAM,
+    REPORTS,
+    PHONE_REPORTS_BY_MODELS,
+    PHONE_REPORTS_BY_CLUSTERS,
+    PHONE_REPORTS_BY_NOT_USED,
+    PHONE_REPORTS_BY_AGENT_LICENSES,
+    DICT_CITIES,
+    DICT_DEVICES,
+    DICT_HW_LOGS,
+    DICT_NETWORKS,
+    DICT_OFFICE_STATUSES,
+    DICT_PHONE_LOGS,
+    DICT_PORT_TYPES,
+    DICT_REGIONS,
+    DICT_VRFS,
+    DICT_REG_CENTERS_MAPPING,
+    UNREGISTERED_PHONES,
+    CUCM_ROUTES,
+    TEST_TOOLS,
+    LOGOUT_PAGE,
+    RECORDABLE_PHONES, RECORDABLE_PHONES_V2
 } from "../../constants";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faUserCircle} from "@fortawesome/free-solid-svg-icons"
@@ -35,6 +55,8 @@ const TopNavBar = ({setLoggedOutState}) => {
                                 <DropdownItem><NavLink to={PHONES_INFO_URL} external>Телефоны Инфо</NavLink></DropdownItem>
                                 <DropdownItem><NavLink to={PHONES_FIO_URL} external>Телефоны по ФИО</NavLink></DropdownItem>
                                 <DropdownItem><NavLink to={PHONES_REDIRECTED_PHONES_URL} external>Телефоны с переадресацией</NavLink></DropdownItem>
+                                <DropdownItem><NavLink to={RECORDABLE_PHONES} external>Recordable Phones</NavLink></DropdownItem>
+                                <DropdownItem><NavLink to={RECORDABLE_PHONES_V2} external>Recordable Phones V2</NavLink></DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                         <Dropdown nav inNavbar>
