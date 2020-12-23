@@ -24,6 +24,7 @@ import {refreshToken, isLoggedIn, setToken, setTokenInfo, getTokenInfo, clearTok
 import LogoutPage from "./components/LogoutPage";
 import LogoutError from "./components/LogoutError";
 import AgGridTable from "./components/RecordablePhonesAgGrid";
+import MaterialUiTable from "./components/RecordablePhonesMaterialUi";
 
 const PrivateRoute = ({children, ...rest}) => {
   const location = useLocation()
@@ -125,7 +126,7 @@ function App() {
                     <AgGridTable />
                   </PrivateRoute>
                   <PrivateRoute path={RECORDABLE_PHONES_V2} exact>
-                    <div>RPV2</div>
+                    <MaterialUiTable />
                   </PrivateRoute>
                   <Route path={LOGIN_PAGE}>
                     <SignIn setTokenState={setTokenState} />
