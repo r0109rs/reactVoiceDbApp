@@ -1,30 +1,40 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import TopNavBar from "./components/TopNavBar"
-import {BrowserRouter as Router, Switch, Route, Redirect, useLocation} from "react-router-dom";
-import {Page, PageHeader, PageMain, PageFooter} from "./components/Page";
+import {BrowserRouter as Router, Redirect, Route, Switch, useLocation} from "react-router-dom";
+import {Page, PageFooter, PageHeader, PageMain} from "./components/Page";
 import RegCentersMapTable from "./components/RegCentersMapTable";
 import UnregisteredPhonesPage from "./components/UnregistredPhonesPage";
 import CucmRoutingPage from "./components/CucmRoutingPage";
 import TestToolsPage from "./components/TestToolsPage";
 import SignIn from "./components/LoginPageMU";
 import {
-  DICT_REG_CENTERS_MAPPING,
-  UNREGISTERED_PHONES,
   CUCM_ROUTES,
-  TEST_TOOLS,
+  DICT_REG_CENTERS_MAPPING,
   LOGIN_PAGE,
-  MAX_REFRESH_ATTEMPTS,
-  LOGOUT_PAGE,
   LOGOUT_ERROR_PAGE,
-  RECORDABLE_PHONES, RECORDABLE_PHONES_V2
+  LOGOUT_PAGE,
+  MAX_REFRESH_ATTEMPTS,
+  RECORDABLE_PHONES,
+  RECORDABLE_PHONES_V2,
+  TEST_TOOLS,
+  UNREGISTERED_PHONES
 } from "./constants";
 import PageNotFound from "./components/Page404"
-import {refreshToken, isLoggedIn, setToken, setTokenInfo, getTokenInfo, clearToken, getTokenTimeBeforeRefresh, refreshTimeout_ms} from "./helpers";
+import {
+  clearToken,
+  getTokenInfo,
+  getTokenTimeBeforeRefresh,
+  isLoggedIn,
+  refreshTimeout_ms,
+  refreshToken,
+  setToken,
+  setTokenInfo
+} from "./helpers";
 import LogoutPage from "./components/LogoutPage";
 import LogoutError from "./components/LogoutError";
 import AgGridTable from "./components/RecordablePhonesAgGrid";
-import MaterialUiTable from "./components/RecordablePhonesMaterialUi";
+import MUITable from "./components/RecordablePhonesMaterialUi";
 
 const PrivateRoute = ({children, ...rest}) => {
   const location = useLocation()
@@ -126,7 +136,7 @@ function App() {
                     <AgGridTable />
                   </PrivateRoute>
                   <PrivateRoute path={RECORDABLE_PHONES_V2} exact>
-                    <MaterialUiTable />
+                    <MUITable />
                   </PrivateRoute>
                   <Route path={LOGIN_PAGE}>
                     <SignIn setTokenState={setTokenState} />

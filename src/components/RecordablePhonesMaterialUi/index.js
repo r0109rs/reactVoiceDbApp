@@ -1,17 +1,23 @@
 import React, {forwardRef} from 'react';
 import MaterialTable from 'material-table';
 import {
-    AddBox, ArrowDownward,
-    Check, ChevronLeft,
+    AddBox,
+    ArrowUpward,
+    Check,
+    ChevronLeft,
     ChevronRight,
     Clear,
     DeleteOutline,
     Edit,
     FilterList,
-    FirstPage, LastPage, Remove,
+    FirstPage,
+    LastPage,
+    Remove,
     SaveAlt,
-    Search, ViewColumn
+    Search,
+    ViewColumn
 } from "@material-ui/icons";
+
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -28,12 +34,12 @@ const tableIcons = {
     PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
     ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
     Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+    SortArrow: forwardRef((props, ref) => <ArrowUpward {...props} ref={ref} />),
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
-}
+    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
+};
 
-class MaterialUiTable extends React.Component {
+class MUITable extends React.Component {
 
     constructor(props) {
         super(props);
@@ -67,42 +73,56 @@ class MaterialUiTable extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div style={{ maxWidth: '100%' }}>
+                <div style={{ minWidth: '100hv', minHeight: '100hv' }}>
                     <MaterialTable style={{marginLeft:'10px', marginRight:'10px', marginTop:'10px'}}
                                    title="Recordable Phones"
                                    icons={tableIcons}
+                                   data={this.state.stats}
                                    columns={[
-                                       { title: 'recorder', field: 'recorder' },
-                                       { title: 'dn', field: 'dn' },
-                                       { title: 'city', field: 'city' },
-                                       { title: 'office', field: 'office' },
+                                       { title: 'recorder', field: 'recorder', cellStyle: {
+                                               width: 100,
+                                               minWidth: 100
+                                           }, },
+                                       { title: 'dn', field: 'dn', cellStyle: {
+                                               width: 100,
+                                               minWidth: 100
+                                           }, },
+                                       { title: 'city', field: 'city',  },
+                                       { title: 'office', field: 'office', cellStyle: {
+                                               width: 400,
+                                               minWidth: 400,
+                                           }, },
                                        { title: 'phoneName', field: 'phoneName' },
                                        { title: 'phoneModel', field: 'phoneModel' },
                                        { title: 'ipAddress', field: 'ipAddress' },
-                                       { title: 'inventoryNumber', field: 'inventoryNumber' },
+                                       { title: 'inventoryNumber', field: 'inventoryNumber', },
                                        { title: 'lastUpdate', field: 'lastUpdate',
                                            cellStyle: {
-                                               backgroundColor: '#a6ffa4'
-                                           }},
-                                       // { title: 'appAge', field: 'appAge' },
-                                   ]}
-                                   data={this.state.stats}
-                                   actions={[
-                                       {
-                                           icon: 'refresh',
-                                           tooltip: 'Refresh',
-                                           isFreeAction: true,
-                                           onClick: () => this.tableRef.current && this.tableRef.current.onQueryChange(),
+                                               width: 250,
+                                               minWidth: 250,
+                                           },
                                        },
+                                       // { title: 'appAge', field: 'appAge' },
+                                       // { title: 'isDuplicateDN', field: 'isDuplicateDN', },
+                                       // { title: 'isHiddenDuplicate', field: 'isHiddenDuplicate', },
                                    ]}
                                    options={{
                                        filtering: true,
                                        grouping: true,
                                        headerStyle: {
+                                           position: 'sticky',
+                                           top: 0,
                                            backgroundColor: '#3e94e0',
                                            color: '#FFFF'
-                                       }}
-                                   }
+                                       },
+                                       maxBodyHeight: "75vh",
+                                       minBodyHeight: "75vh",
+                                       pageSize:20,
+                                       emptyRowsWhenPaging: true,
+                                       pageSizeOptions:[10,20,50,100],
+                                       rowStyle: data => data.isDuplicateDN === true ? { background: "#dddddd" } : null
+                                   }}
+
                     />
                 </div>
             </React.Fragment>
@@ -110,4 +130,4 @@ class MaterialUiTable extends React.Component {
     }
 }
 
-export default MaterialUiTable;
+export default MUITable;
